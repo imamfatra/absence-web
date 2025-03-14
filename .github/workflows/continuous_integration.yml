@@ -3,6 +3,8 @@ name: CI (Contonuous Integration)
 on:
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
 
 jobs:
   build: # job id
