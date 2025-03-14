@@ -4,6 +4,7 @@ import (
 	"absensi-web/cmd"
 	"absensi-web/controller"
 	"absensi-web/db"
+	"absensi-web/middleware"
 	"absensi-web/repository"
 	"absensi-web/service"
 	"net/http"
@@ -25,8 +26,8 @@ func main()  {
     router.Handler("GET", "/static/*filepath", http.StripPrefix("/static/", fileServer))    
 
     server := http.Server {
-        Addr: "localhost:3000",
-        Handler: router,
+        Addr: ":3000",
+        Handler: middleware.EnableCors(router),
     }
     err := server.ListenAndServe()
     if err != nil {
