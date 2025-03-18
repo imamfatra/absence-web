@@ -17,7 +17,7 @@ jobs:
       #   id : date
       #   run: echo "date=$(date + '%s')" >> $GITHUB_OUTPUT
       - name: Make file .env
-        run: echo "${{secret.ENV_FILE}}" > .env
+        run: echo "${{secrets.ENV_FILE}}" > .env
       - name: Buil and Run the Docker Image
        # env:
         #   DATES: ${{ steps.date.outputs.date}}
@@ -40,7 +40,7 @@ jobs:
           cd app
           go mod download
       - name: Make file .env
-        run: echo "${{secret.ENV_FILE}}" > .env
+        run: echo "${{secrets.ENV_FILE}}" > .env
       - name: Run Test
         run: |
           cd app
