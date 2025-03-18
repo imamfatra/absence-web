@@ -13,14 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      # - name: Get current date  
-      #   id : date
-      #   run: echo "date=$(date + '%s')" >> $GITHUB_OUTPUT
       - name: Make file .env
-        run: echo "${{secrets.ENV_FILE}}" > .env
+        run: |
+          cd app
+          echo "${{secrets.ENV_FILE}}" > .env
       - name: Buil and Run the Docker Image
-       # env:
-        #   DATES: ${{ steps.date.outputs.date}}
         run: |
           cd app
           docker compose up -d
@@ -40,7 +37,9 @@ jobs:
           cd app
           go mod download
       - name: Make file .env
-        run: echo "${{secrets.ENV_FILE}}" > .env
+        run: |
+          cd app
+          echo "${{secrets.ENV_FILE}}" > .env
       - name: Run Test
         run: |
           cd app
