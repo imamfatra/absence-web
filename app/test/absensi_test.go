@@ -75,8 +75,11 @@ func TestSaveSuccess(t *testing.T)  {
     db := NewDB()
     router := setupRouter(db)
 
+    err := db.Ping()
+    assert.NoError(t, err)
+
     requestBody := strings.NewReader((`{"name": "riski", "nim": 489354, "mata_kuliah": "agama", "jurusan": "pendidikan pkn"}`))
-    request := httptest.NewRequest(http.MethodPost, "http://localhost:3000/", requestBody)
+    request := httptest.NewRequest(http.MethodPost, "/", requestBody)
     request.Header.Add("Content-Type", "application/json")
 
     recorder := httptest.NewRecorder()
