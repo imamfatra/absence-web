@@ -7,3 +7,15 @@ services:
       - 3000
     ports:
       - "3000:3000"
+  postgres:
+    image: postgres:17.4
+    container_name: absensi_db
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin20
+      - POSTGRES_DB=absensi
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
